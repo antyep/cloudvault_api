@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Task, Tag
-from .serializers import TaskSerializer, TagSerializer
+from .serializer import TaskSerializer, TagSerializer
 
 # Create your views here.
 
