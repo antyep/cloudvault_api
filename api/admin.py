@@ -20,4 +20,12 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(TaskTag)
 class TaskTagAdmin(admin.ModelAdmin):
-    list_display = ('task', 'tag')
+    list_display = ('get_task_title', 'get_tag_name')
+
+    def get_task_title(self, obj):
+        return obj.task.title
+    get_task_title.short_description = 'Task Title'
+
+    def get_tag_name(self, obj):
+        return obj.tag.name
+    get_tag_name.short_description = 'Tag Name'
