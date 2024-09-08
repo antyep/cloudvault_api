@@ -4,13 +4,27 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class User(models.Model):
-    username = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=50)
+class Role(models.Model):
+    ROLE_CHOICES = [
+        ('admin', 'Administrator'),
+        ('mod', 'Moderator'),
+        ('user', 'User'),
+    ]
+
+    name = models.CharField(
+        max_length=20, choices=ROLE_CHOICES, default='user')
+
+    def __str__(self):
+        return self.name
 
 
-class
+class CustomUser(User):
+    role = models.ForeignKey(
+        Role, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+def __str__(self):
+    return self.username
 
 
 class Task(models.Model):
@@ -42,5 +56,5 @@ class Tag(models.Model):
 
 
 class TaskTag(models.Model):
-    Task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
