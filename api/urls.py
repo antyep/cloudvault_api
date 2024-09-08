@@ -5,3 +5,5 @@ from . import views
 router = DefaultRouter()
 router.register(r'tasks', views.TaskViewSet)
 router.register(r'tags', views.TagViewSet)
+
+urlpatterns = router.urls
