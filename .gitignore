@@ -2,6 +2,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+
 ### Linux ###
 *~
 
