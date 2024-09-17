@@ -7,3 +7,5 @@ psycopg2-binary
 coreapi
 dj-rest-auth
 django-allauth
+resend
+requests
