@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Task, Tag
+from .models import CustomUser, Media
 
 
-class TaskSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Task
+        model = CustomUser
         fields = '__all__'
 
 
-class TagSerializer(serializers.ModelSerializer):
+class MediaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tag
+        model = Media
         fields = '__all__'
