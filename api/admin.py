@@ -1,31 +1,18 @@
 from django.contrib import admin
-from .models import Task, Tag, TaskTag
+from .models import CustomUser, Media
 
 # Register your models here.
 
 
-@admin.register(Task)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'due_date',
-                    'created_at', 'updated_at', 'user')
-    list_filter = ('status', 'due_date', 'user')
-    search_fields = ('title', 'description')
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'created_at', 'updated_at')
+    search_fields = ('username', 'email')
 
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
-
-
-@admin.register(TaskTag)
-class TaskTagAdmin(admin.ModelAdmin):
-    list_display = ('get_task_title', 'get_tag_name')
-
-    def get_task_title(self, obj):
-        return obj.task.title
-    get_task_title.short_description = 'Task Title'
-
-    def get_tag_name(self, obj):
-        return obj.tag.name
-    get_tag_name.short_description = 'Tag Name'
+@admin.register(Media)
+class MediaAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'media_file', 'file_type', 'file_size',
+                    'user', 'is_public', 'is_deleted', 'created_at', 'updated_at')
+    list_filter = ('file_type', 'is_public', 'is_deleted', 'user')
+    search_fields = ('title', 'description', 'file_type')
