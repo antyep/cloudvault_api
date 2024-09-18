@@ -1,15 +1,15 @@
 from rest_framework import viewsets
-from .models import Task, Tag
-from .serializer import TaskSerializer, TagSerializer
+from .models import CustomUser, Media
+from .serializer import CustomUserSerializer, MediaSerializer
 
 # Create your views here.
 
 
-class TaskViewSet (viewsets.ModelViewSet):
-    queryset = Task.objects.all()
-    serializer_class = TaskSerializer
+class CustomUserViewSet (viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
 
 
-class TagViewSet(viewsets.ModelViewSet):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+class MediaViewSet(viewsets.ModelViewSet):
+    queryset = Media.objects.all()
+    serializer_class = MediaSerializer
