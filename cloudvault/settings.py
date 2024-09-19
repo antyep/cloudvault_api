@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'coreapi',
+    'django_seed',
 ]
 
 SITE_ID = 1
@@ -170,3 +171,5 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'
 LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+USE_TZ = False
