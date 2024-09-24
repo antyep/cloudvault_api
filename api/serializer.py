@@ -12,3 +12,8 @@ class MediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Media
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['media_file'] = instance.media_file.url
+        return representation
