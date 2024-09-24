@@ -1,67 +1,53 @@
 from django.test import TestCase
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APIClient
-from api.models import CustomUser, Media
-from api.serializer import CustomUserSerializer, MediaSerializer
-from django.core.files.uploadedfile import SimpleUploadedFile
+from django.urls import reverse, resolve
+from api.views import CustomUserViewSet, MediaViewSet
 
 
-class ViewsTestCase(TestCase):
-    def setUp(self):
-        self.client = APIClient()
-        self.user = CustomUser.objects.create_user(
-            username='testuser', email='test@example.com', password='testpass123')
-        self.client.force_authenticate(user=self.user)
+class UrlsTestCase(TestCase):
+    def test_customuser_list_url(self):
+        url = reverse('customuser-list')
+        self.assertEqual(resolve(url).func.__name__,
+                         CustomUserViewSet.as_view({'get': 'list'}).__name__)
 
-        self.media = Media.objects.create(
-            title='Test Media',
-            description='Test Description',
-            file_size=1024,
-            user=self.user,
-            is_public=True,
-            media_file=SimpleUploadedFile(
-                "test.mp4", b"file_content", content_type="video/mp4"),
-            file_type='video'  # Asegúrate de incluir file_type aquí si es necesario
-        )
+    def test_customuser_detail_url(self):
+        url = reverse('customuser-detail', kwargs={'pk': 1})
+        self.assertEqual(resolve(url).func.__name__,
+                         CustomUserViewSet.as_view({'get': 'retrieve'}).__name__)
 
-    def test_list_users(self):
-        response = self.client.get(reverse('customuser-list'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        users = CustomUser.objects.all()
-        serializer = CustomUserSerializer(users, many=True)
-        self.assertEqual(response.data, serializer.data)
+    def test_media_list_url(self):
+        url = reverse('media-list')
+        self.assertEqual(resolve(url).func.__name__,
+                         MediaViewSet.as_view({'get': 'list'}).__name__)
 
-    def test_create_user(self):
-        data = {
-            'username': 'newuser',
-            'email': 'newuser@example.com',
-            'password': 'newpass123'
-        }
-        response = self.client.post(reverse('customuser-list'), data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    def test_media_detail_url(self):
+        url = reverse('media-detail', kwargs={'pk': 1})
+        self.assertEqual(resolve(url).func.__name__,
+                         MediaViewSet.as_view({'get': 'retrieve'}).__name__)
 
-    def test_list_media(self):
-        response = self.client.get(reverse('media-list'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        media = Media.objects.all()
-        serializer = MediaSerializer(media, many=True)
-        self.assertEqual(response.data, serializer.data)
+    def test_admin_url(self):
+        url = reverse('admin:index')
+        self.assertEqual(url, '/admin/')
 
-    def test_create_media(self):
-        media_file = SimpleUploadedFile(
-            "file.mp4", b"file_content", content_type="video/mp4")
-        data = {
-            'title': 'New Media',
-            'description': 'New Description',
-            'file_size': 2048,
-            'user': self.user.id,
-            'is_public': True,
-            'media_file': media_file,
-            'file_type': 'file_typeo'
-        }
-        response = self.client.post(
-            reverse('media-list'), data, format='multipart')
-        if response.status_code != status.HTTP_201_CREATED:
-            print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    def test_api_docs_url(self):
+        url = '/docs/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_allauth_urls(self):
+        allauth_urls = [
+            'account_login',
+            'account_logout',
+            'account_inactive',
+            'account_signup',
+            'account_email',
+            'account_change_password',
+            'account_set_password',
+            'account_reset_password',
+            'account_reset_password_done',
+        ]
+        for url_name in allauth_urls:
+            url = reverse(url_name)
+            self.assertTrue(url.startswith('/accounts/'))
+
+        url = reverse('account_confirm_email', kwargs={'key': 'testkey'})
+        self.assertTrue(url.startswith('/accounts/confirm-email/'))
