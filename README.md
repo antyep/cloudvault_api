@@ -12,6 +12,7 @@ This project was created with the purpose of providing storage for files, specif
 - Documentation with CoreAPI.
 - Seeding with Django-seed.
 - Tests using Django's TestCase. (Covering serializers, views, models, URLs)
+- CRUD Operations: Complete Create, Read, Update, Delete functionality for managing multimedia files.
 
 
 ## 2. Stack
