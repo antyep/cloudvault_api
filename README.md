@@ -160,6 +160,19 @@ http://localhost:8000/admin/
 
 - __Token Verification:__ Implementing robust token verification to ensure secure access to the API. This process involves validating the authenticity of tokens on each request, preventing unauthorized access, and protecting sensitive data. Users will be required to provide a valid token in the authorization header for all requests to ensure that only authenticated users can interact with the API.
 
+## 6. Additional commands: 
+
+### To run the seeders:
+
+   ```bash
+   docker-compose exec web python manage.py seed
+  ```
+
+### To run tests:
+
+   ```bash
+   docker-compose exec web python manage.py test
+  ```
 
 
 ## Contact
