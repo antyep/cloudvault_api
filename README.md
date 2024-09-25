@@ -144,13 +144,13 @@ http://localhost:8000/admin/
 
 ## 5. Future Improvements
 
-· __File Search Functionality:__ Implementing search capabilities to easily find stored files. </b>
-· __User Profile Management:__ Allowing users to manage their profiles, profile pictures. </b>
-· __Enhanced File Format Support:__ Supporting additional file formats for upload and conversion. </b>
-· __Integration with Cloud Storage Services:__ Providing options for users to directly upload files to Cloud Storage providers. </b>
-· __Social Login and Registration:__ Implementing various methods to Log In or Sign Up using Gmail, GitHub or others services. </b>
-· __Frontend Interface:__ Developing a user-friendly frontend interface to interact with the API for better user experience. </b>
-· __Token verification:__ Implementing robust token verification to ensure secure access to the API. This process involves validating the authenticity of tokens on each request, preventing unauthorized access and protecting sensitive data. Users will be required to provide a valid token in the authorization header for all requests to ensure that only authenticated users can interact with the API.
+File Search Functionality: Implementing search capabilities to easily find stored files.
+User Profile Management: Allowing users to manage their profiles and profile pictures.
+Enhanced File Format Support: Supporting additional file formats for upload and conversion.
+Integration with Cloud Storage Services: Providing options for users to directly upload files to Cloud Storage providers.
+Social Login and Registration: Implementing various methods to log in or sign up using Gmail, GitHub, or other services.
+Frontend Interface: Developing a user-friendly frontend interface to interact with the API for a better user experience.
+Token Verification: Implementing robust token verification to ensure secure access to the API. This process involves validating the authenticity of tokens on each request, preventing unauthorized access, and protecting sensitive data. Users will be required to provide a valid token in the authorization header for all requests to ensure that only authenticated users can interact with the API.
 
 
 ## Contact
