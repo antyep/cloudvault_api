@@ -1,0 +1,188 @@
+# CloudVault
+
+
+This project was created with the purpose of providing storage for files, specifically images and videos in certain formats. It complements a script I created to convert .HEIC files to .JPG and .MOV files to .MP4, as these are not conventional types and are just for iOS devices, I wanted to migrate them and convert them easily but storing the entire memory of my iPhone was a challenge. The goal is to offer a simple service for file storage without unnecessary requirements or the need for payments on other platforms. It is a straightforward solution for anyone in need of efficient file storage without difficulties.
+
+
+## 1. Features
+
+- RESTful API built with Django REST Framework.
+- User authentication with Django Allauth.
+- Upload and management of multimedia files.
+- Documentation with CoreAPI.
+- Seeding with Django-seed.
+- Tests using Django's TestCase. (Covering serializers, views, models, URLs)
+
+
+## 2. Stack
+
+- Django.
+- Django REST Framework.
+- Docker.
+- PostgreSQL.
+- CoreAPI.
+
+## 3. Installation
+
+### Clone the repository:
+
+   ```bash
+   git clone https://github.com/antyep/cloudvault_api.git
+   cd cloudvault_api
+  ```
+
+### Create a virtual environment and activate it using the following commands:
+
+This is not a must if you are considering using Docker.
+
+For Linux:
+
+   ```bash
+    python3 -m venv venv
+    source venv/bin/activate    
+  ```
+For Windows:
+
+   ```PowerShell
+    python3 -m venv venv
+    source venv/Scripts/activate  
+  ```
+
+To deactivate the virtual environment type this command in your terminal:
+
+   ```bash
+    deactivate  
+  ```
+
+### Install the dependencies:
+
+   ```bash
+    pip install -r requirements.txt
+  ```
+
+### Build the image and run Docker container:
+
+Make sure Docker Desktop is running.
+
+   ```bash
+   docker-compose up --build
+  ```
+
+Once Docker is running, the API is accessible on port 8000. It is not necessary to execute the "runserver" command, but you must create the superuser first.
+
+### Create superuser:
+
+  ```bash
+    docker-compose exec web python manage.py createsuperuser
+  ```
+
+You will be prompted to enter username, email, and password, here is how you should see it:
+
+  ```bash
+    username: your_username
+    email: example@example.com
+    password: password
+    password(again): invisible password # You will not be able to see it.
+  ```
+
+Make sure to replace the placeholders with your own information.
+
+Once the superuser is created you could access to the admin site by the following URL:
+
+http://localhost:8000/admin/
+
+## 4. Usage
+
+### Endpoints
+
+#### List All Media
+
+- __Request:__
+  - __Method:__ GET
+  - __URL:__ `http://localhost:8000/api/media/`
+
+- __Response:__
+  - Returns a list of all media files in JSON format.
+
+#### Create Media
+
+- __Request:__
+  - __Method:__ POST
+  - __URL:__ `http://localhost:8000/api/media/add`
+  - __Body:__ (example)
+    ```json
+    {
+      "title": "Sample Image",
+      "description": "A sample image file.",
+      "media_file": "image.jpg",
+      "file_type": "jpg/mp4",
+      "user": "id"
+    }
+    
+
+- __Response:__
+  - Returns the created media object in JSON format.
+
+#### Retrieve Media by ID
+
+- __Request:__
+  - __Method:__ GET
+  - __URL:__ `http://localhost:8000/api/media/{id}/`
+
+- __Response:__
+  - Returns the media object with the specified ID in JSON format.
+
+#### Update Media
+
+- __Request:__
+  - __Method:__ PUT
+  - __URL:__ `http://localhost:8000/api/media/{id}/change`
+  - __Body:__ (example)
+    ```json
+    {
+      "title": "Sample Image",
+      "description": "A sample image file.",
+      "media_file": "image.jpg",
+      "file_type": "jpg/mp4",
+      "user": "id"
+    }
+    ```
+
+- __Response:__
+  - Returns the updated media object in JSON format.
+ 
+#### Check Media History
+
+- __Request:__
+  - __Method:__ GET
+  - __URL:__ `http://localhost:8000/api/media/{id}/history`
+
+- __Response:__
+  - Returns the changes in this object in JSON format.
+
+#### Delete Media
+
+- __Request:__
+  - __Method:__ DELETE
+  - __URL:__ `http://localhost:8000/api/media/{id}/`
+
+- __Response:__
+  - Returns a success message confirming deletion.
+
+
+
+## 5. Future Improvements
+
+· __File Search Functionality:__ Implementing search capabilities to easily find stored files.
+· __User Profile Management:__ Allowing users to manage their profiles, profile pictures.
+· __Enhanced File Format Support:__ Supporting additional file formats for upload and conversion.
+· __Integration with Cloud Storage Services:__ Providing options for users to directly upload files to Cloud Storage providers.
+· __Social Login and Registration:__ Implementing various methods to Log In or Sign Up using Gmail, GitHub or others services.
+· __Frontend Interface:__ Developing a user-friendly frontend interface to interact with the API for better user experience.
+
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/11aa5d87-fd64-4973-b0df-ca7c7f4eadad)
