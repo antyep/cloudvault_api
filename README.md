@@ -1,7 +1,7 @@
 # CloudVault
 
 
-This project was created with the purpose of providing storage for files, specifically images and videos in certain formats. It complements a script I created to convert .HEIC files to .JPG and .MOV files to .MP4, as these are not conventional types and are just for iOS devices, I wanted to migrate them and convert them easily but storing the entire memory of my iPhone was a challenge. The goal is to offer a simple service for file storage without unnecessary requirements or the need for payments on other platforms. It is a straightforward solution for anyone in need of efficient file storage without difficulties.
+This project was created with the purpose of providing storage for files, specifically images and videos in certain formats. It complements a script I created to convert .HEIC files to .JPG and .MOV files to .MP4, as these are not conventional types and are just for iOS devices, I wanted to migrate them and convert them easily but storing the entire memory of my iPhone was a challenge. The goal is to offer a simple service for file storage without unnecessary requirements or the need for payments on other platforms. It is a straightforward solution for anyone in need of efficient file storage without difficulties. This project was made for educational purposes so it might no be as polished as other APIs.
 
 
 ## 1. Features
@@ -93,83 +93,53 @@ http://localhost:8000/admin/
 
 ## 4. Usage
 
-### Endpoints
+### Endpoints (Admin)
 
 #### List All Media
 
 - __Request:__
   - __Method:__ GET
-  - __URL:__ `http://localhost:8000/api/media/`
+  - __URL:__ `http://localhost:8000/admin/api/media/`
+ 
+#### Get Media by ID
+
+- __Request:__
+  - __Method:__ GET
+  - __URL:__ `http://localhost:8000/admin/api/media/{id}/`
 
 - __Response:__
   - Returns a list of all media files in JSON format.
 
-#### Create Media
-
-- __Request:__
-  - __Method:__ POST
-  - __URL:__ `http://localhost:8000/api/media/add`
-  - __Body:__ (example)
-    ```json
-    {
-      "title": "Sample Image",
-      "description": "A sample image file.",
-      "media_file": "image.jpg",
-      "file_type": "jpg/mp4",
-      "user": "id"
-    }
-    
-
-- __Response:__
-  - Returns the created media object in JSON format.
-
-#### Retrieve Media by ID
+#### List all users
 
 - __Request:__
   - __Method:__ GET
-  - __URL:__ `http://localhost:8000/api/media/{id}/`
-
-- __Response:__
-  - Returns the media object with the specified ID in JSON format.
-
-#### Update Media
-
-- __Request:__
-  - __Method:__ PUT
-  - __URL:__ `http://localhost:8000/api/media/{id}/change`
-  - __Body:__ (example)
-    ```json
-    {
-      "title": "Sample Image",
-      "description": "A sample image file.",
-      "media_file": "image.jpg",
-      "file_type": "jpg/mp4",
-      "user": "id"
-    }
-    ```
-
-- __Response:__
-  - Returns the updated media object in JSON format.
- 
-#### Check Media History
-
-- __Request:__
-  - __Method:__ GET
-  - __URL:__ `http://localhost:8000/api/media/{id}/history`
-
-- __Response:__
-  - Returns the changes in this object in JSON format.
+  - __URL:__ `http://localhost:8000/admin/api/customuser/`
 
 #### Delete Media
 
 - __Request:__
   - __Method:__ DELETE
-  - __URL:__ `http://localhost:8000/api/media/{id}/`
+  - __URL:__ `http://localhost:8000/admin/api/media/{id}/delete`
+  - 
 
-- __Response:__
-  - Returns a success message confirming deletion.
+#### Create Media
 
-
+- __Request:__
+  - __Method:__ POST
+  - __URL:__ `http://localhost:8000/api/media/`
+  - __Body:__ (example)
+    ```json
+    {
+      "title": "Sample Image",
+      "description": "A sample image file.",
+      "media_file": "image.jpg",
+      "file_type": "jpg/mp4",
+      "user": "id"
+      "is_public": false,
+      "is_deleted": false
+    }
+   
 
 ## 5. Future Improvements
 
@@ -179,10 +149,11 @@ http://localhost:8000/admin/
 · __Integration with Cloud Storage Services:__ Providing options for users to directly upload files to Cloud Storage providers.
 · __Social Login and Registration:__ Implementing various methods to Log In or Sign Up using Gmail, GitHub or others services.
 · __Frontend Interface:__ Developing a user-friendly frontend interface to interact with the API for better user experience.
+· __Token verification:__ Implementing robust token verification to ensure secure access to the API. This process involves validating the authenticity of tokens on each request, preventing unauthorized access and protecting sensitive data. Users will be required to provide a valid token in the authorization header for all requests to ensure that only authenticated users can interact with the API.
 
 
+## Contact
+
+Feel free to contact me through: antyep6@gmail.com.
 
 
-
-
-![image](https://github.com/user-attachments/assets/11aa5d87-fd64-4973-b0df-ca7c7f4eadad)
