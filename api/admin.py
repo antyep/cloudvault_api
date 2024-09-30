@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from .models import CustomUser, Media
 
 # Register your models here.
@@ -16,3 +17,6 @@ class MediaAdmin(admin.ModelAdmin):
                     'user', 'is_public', 'is_deleted', 'created_at', 'updated_at')
     list_filter = ('file_type', 'is_public', 'is_deleted', 'user')
     search_fields = ('title', 'description', 'file_type')
+
+
+admin.site.unregister(Group)
