@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'knox',
-    'rest_framework.authtoken',
     'api',
     'coreapi',
     'django_seed',
@@ -57,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'cloudvault.urls'
@@ -82,7 +79,6 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'cloudvault.wsgi.application'
@@ -152,21 +148,4 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'api.CustomUser'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-ACCOUNT_CHANGE_EMAIL = True
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'
-LOGIN_REDIRECT_URL = '/profile/'
-LOGOUT_REDIRECT_URL = '/login/'
-
 USE_TZ = False
