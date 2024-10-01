@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'allauth',
+    'allauth.headless',
     'allauth.account',
+    'allauth.usersessions',
     'allauth.socialaccount',
+    'allauth.mfa',
     'api',
     'coreapi',
     'django_seed',
@@ -51,17 +54,26 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+HEADLESS_FRONTEND_URLS = {
+    "account_confirm_email": "https://app.project.org/account/verify-email/{key}",
+    "account_reset_password": "https://app.project.org/account/password/reset",
+    "account_reset_password_from_key": "https://app.org/account/password/reset/key/{key}",
+    "account_signup": "https://app.org/account/signup",
+    "socialaccount_login_error": "https://app.project.org/account/provider/callback"
+}
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware'
 ]
+
+#     'django.middleware.csrf.CsrfViewMiddleware',
 
 ROOT_URLCONF = 'cloudvault.urls'
 
@@ -160,6 +172,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'api.CustomUser'
 USE_TZ = False
 
+ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+ACCOUNT_USERNAME_REQUIRED = False
