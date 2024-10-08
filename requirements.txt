@@ -8,8 +8,8 @@ coreapi
 django-seed
 django-allauth
 django-cors-headers
-djangorestframework-simplejwt
 fido2
 resend
 pyheif
 Pillow
+opencv-python
